@@ -69,9 +69,19 @@ function getRouteFromPath(pathname: string): AppRoute {
 }
 
 export function useAppRoute() {
-  const [route, setRoute] = useState<AppRoute>(() =>
-    getRouteFromPath(window.location.pathname),
-  )
+  const [route, setRoute] = useState<AppRoute>(() => {
+    // Handle GitHub Pages 404 redirect with ?p= query parameter
+    const params = new URLSearchParams(window.location.search)
+    const redirectPath = params.get('p')
+    
+    if (redirectPath) {
+      // Clean up the URL by removing the query parameter
+      window.history.replaceState({}, '', redirectPath)
+      return getRouteFromPath(redirectPath)
+    }
+    
+    return getRouteFromPath(window.location.pathname)
+  })
 
   useEffect(() => {
     const handlePopState = () => {
