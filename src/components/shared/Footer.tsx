@@ -63,19 +63,19 @@ export function Footer() {
             <div className="mt-4 flex flex-col gap-3">
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href="/customer"
+                href={`${import.meta.env.BASE_URL}customer`}
               >
                 Home
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href="/for-businesses"
+                href={`${import.meta.env.BASE_URL}for-businesses`}
               >
                 For Businesses
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href="/how-it-works"
+                href={`${import.meta.env.BASE_URL}how-it-works`}
               >
                 How It Works
               </a>
@@ -95,7 +95,7 @@ export function Footer() {
               </a>
               <a
                 className="font-semibold text-slate-500 transition hover:text-[var(--color-primary)]"
-                href="/contact-us"
+                href={`${import.meta.env.BASE_URL}contact-us`}
               >
                 Need help? Contact us
               </a>
@@ -109,13 +109,13 @@ export function Footer() {
             <div className="mt-4 flex flex-col gap-3">
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href="/privacy-policy"
+                href={`${import.meta.env.BASE_URL}privacy-policy`}
               >
                 Privacy Policy
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href="/terms-of-service"
+                href={`${import.meta.env.BASE_URL}terms-of-service`}
               >
                 Terms of Service
               </a>

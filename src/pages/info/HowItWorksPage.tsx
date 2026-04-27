@@ -262,13 +262,13 @@ export function HowItWorksPage() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-[#ed7f2c]/20 transition hover:-translate-y-0.5 hover:opacity-95"
-                href="/signup"
+                href={`${import.meta.env.BASE_URL}signup`}
               >
                 Get Started
               </a>
               <a
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/18 bg-white/6 px-5 py-2.5 text-sm font-black text-white transition hover:bg-white/10"
-                href="/customer"
+                href={`${import.meta.env.BASE_URL}customer`}
               >
                 Add to Home Screen
               </a>
