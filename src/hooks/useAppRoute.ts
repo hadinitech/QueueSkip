@@ -14,8 +14,19 @@ export type AppRoute =
   | 'super-admin-dashboard'
   | 'terms-of-service'
 
+// Get the base path from Vite
+const BASE_PATH = import.meta.env.BASE_URL
+
+// Strip base path from pathname
+function stripBasePath(pathname: string): string {
+  if (BASE_PATH && BASE_PATH !== '/' && pathname.startsWith(BASE_PATH)) {
+    return pathname.slice(BASE_PATH.length - 1) // Keep the leading slash
+  }
+  return pathname
+}
+
 function getRouteFromPath(pathname: string): AppRoute {
-  const normalizedPathname = pathname.split('?')[0]
+  const normalizedPathname = stripBasePath(pathname).split('?')[0]
 
   if (normalizedPathname === '/forgot-password') {
     return 'auth-forgot-password'
@@ -75,8 +86,10 @@ export function useAppRoute() {
     const redirectPath = params.get('p')
     
     if (redirectPath) {
+      // Reconstruct the full path with base
+      const fullPath = BASE_PATH && BASE_PATH !== '/' ? BASE_PATH.slice(0, -1) + redirectPath : redirectPath
       // Clean up the URL by removing the query parameter
-      window.history.replaceState({}, '', redirectPath)
+      window.history.replaceState({}, '', fullPath)
       return getRouteFromPath(redirectPath)
     }
     
@@ -96,7 +109,9 @@ export function useAppRoute() {
   }, [])
 
   function navigateTo(pathname: string) {
-    window.history.pushState({}, '', pathname)
+    // Prepend base path for browser history
+    const fullPath = BASE_PATH && BASE_PATH !== '/' ? BASE_PATH.slice(0, -1) + pathname : pathname
+    window.history.pushState({}, '', fullPath)
     setRoute(getRouteFromPath(pathname))
   }
 

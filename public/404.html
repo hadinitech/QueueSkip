@@ -7,18 +7,21 @@
       (function () {
         const pathname = window.location.pathname
         const repoBase = '/QueueSkip'
-        const relativePath = pathname.startsWith(repoBase)
-          ? pathname.slice(repoBase.length)
-          : pathname
-        const query = window.location.search.replace(/^\?/, '')
-        const redirect =
-          repoBase +
-          '/?p=' +
-          encodeURIComponent(relativePath || '/')
-
-        window.location.replace(
-          redirect + (query ? '&q=' + encodeURIComponent(query) : '') + window.location.hash,
-        )
+        
+        // Extract the path relative to the repo base
+        let relativePath = pathname
+        if (pathname.startsWith(repoBase + '/')) {
+          relativePath = pathname.slice(repoBase.length)
+        } else if (pathname === repoBase || pathname === repoBase + '/') {
+          relativePath = '/'
+        }
+        
+        const query = window.location.search
+        const hash = window.location.hash
+        
+        // Redirect to index with the path encoded in query parameter
+        const redirect = repoBase + '/?p=' + encodeURIComponent(relativePath)
+        window.location.replace(redirect + (query ? '&' + query.slice(1) : '') + hash)
       })()
     </script>
   </head>
