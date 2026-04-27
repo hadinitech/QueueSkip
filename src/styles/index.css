@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0d2f64;
+  --color-secondary: #3d879a;
+  --color-accent: #ed7f2c;
+  --header-background: rgb(237 127 44 / 0.95);
+  --logo-background: #ffffff;
+  --queue-card-background: linear-gradient(160deg, #0d2f64 0%, #18478c 100%);
+  --queue-card-title: #ffffff;
+  --queue-card-body: rgb(255 255 255 / 0.9);
+  --queue-card-pill-background: rgb(255 255 255 / 0.14);
+  --queue-card-pill-text: #ffffff;
+  --queue-card-cta: #ffd1ad;
+  --page-background: radial-gradient(circle at top left, #d9edf2 0, #f8fafc 34rem);
+  --surface-color: #ffffff;
+  --surface-muted: #f1f5f9;
+  --surface-soft: #f8fafc;
+  --text-strong: #0f172a;
+  --text-muted: #64748b;
+  --border-soft: #e2e8f0;
+  --shadow-soft: rgb(203 213 225 / 0.7);
+
+  font-family:
+    "Aptos",
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+  color: var(--text-strong);
+  background: var(--surface-soft);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="orange"] {
+  --color-primary: #ed7f2c;
+  --color-secondary: #0d2f64;
+  --color-accent: #3d879a;
+  --header-background: rgb(13 47 100 / 0.95);
+  --logo-background: #ffffff;
+  --queue-card-background: linear-gradient(160deg, #ed7f2c 0%, #f29a53 100%);
+  --queue-card-title: #ffffff;
+  --queue-card-body: rgb(255 255 255 / 0.92);
+  --queue-card-pill-background: rgb(255 255 255 / 0.16);
+  --queue-card-pill-text: #ffffff;
+  --queue-card-cta: #fff2e8;
+  --page-background: radial-gradient(circle at top left, #ffe0ca 0, #fff8f2 34rem);
+}
+
+:root[data-theme="navy"] {
+  --color-primary: #0d2f64;
+  --color-secondary: #ed7f2c;
+  --color-accent: #3d879a;
+  --header-background: rgb(248 250 252 / 0.95);
+  --logo-background: transparent;
+  --queue-card-background: #ffffff;
+  --queue-card-title: #0d2f64;
+  --queue-card-body: #334155;
+  --queue-card-pill-background: rgb(61 135 154 / 0.1);
+  --queue-card-pill-text: #3d879a;
+  --queue-card-cta: #ed7f2c;
+  --page-background:
+    radial-gradient(circle at 12% 16%, rgb(237 127 44 / 0.42) 0, transparent 20rem),
+    radial-gradient(circle at 88% 12%, rgb(61 135 154 / 0.5) 0, transparent 24rem),
+    radial-gradient(circle at 76% 88%, rgb(13 47 100 / 0.24) 0, transparent 26rem),
+    linear-gradient(135deg, #eaf4ff 0%, #c7dbf7 36%, #f8fafc 68%, #fff3e8 100%);
+  --surface-muted: #e7f0fb;
+  --surface-soft: #eef6ff;
+}
+
+:root[data-theme="dark"] {
+  --color-primary: #ed7f2c;
+  --color-secondary: #7dd3fc;
+  --color-accent: #f97316;
+  --header-background: rgb(17 24 39 / 0.92);
+  --logo-background: #ffffff;
+  --queue-card-background: linear-gradient(160deg, #111827 0%, #1f2937 100%);
+  --queue-card-title: #f8fafc;
+  --queue-card-body: #cbd5e1;
+  --queue-card-pill-background: rgb(125 211 252 / 0.14);
+  --queue-card-pill-text: #7dd3fc;
+  --queue-card-cta: #fdba74;
+  --page-background: radial-gradient(circle at top left, #1f2937 0, #020617 34rem);
+  --surface-color: #111827;
+  --surface-muted: #1f2937;
+  --surface-soft: #020617;
+  --text-strong: #f8fafc;
+  --text-muted: #cbd5e1;
+  --border-soft: #334155;
+  --shadow-soft: rgb(2 6 23 / 0.6);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--surface-soft);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+
+.app-loader::before,
+.app-loader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+
+.app-loader::before {
+  animation: app-loader-before 2s infinite;
+}
+
+.app-loader::after {
+  animation: app-loader-after 2s infinite;
+}
+
+.app-loader-sm {
+  font-size: 0.8rem;
+}
+
+@keyframes app-loader-before {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgb(225 20 98 / 0.75), -1em 0.5em rgb(111 202 220 / 0.75);
+  }
+
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgb(225 20 98 / 0.75), 0 0.5em rgb(111 202 220 / 0.75);
+  }
+
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgb(225 20 98 / 0.75), 1em 0.5em rgb(111 202 220 / 0.75);
+  }
+
+  100% {
+    box-shadow: 1em -0.5em rgb(225 20 98 / 0.75), -1em 0.5em rgb(111 202 220 / 0.75);
+  }
+}
+
+@keyframes app-loader-after {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgb(61 184 143 / 0.75), -0.5em -1em rgb(233 169 32 / 0.75);
+  }
+
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgb(61 184 143 / 0.75), -0.5em 0 rgb(233 169 32 / 0.75);
+  }
+
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgb(61 184 143 / 0.75), -0.5em 1em rgb(233 169 32 / 0.75);
+  }
+
+  100% {
+    box-shadow: 0.5em 1em rgb(61 184 143 / 0.75), -0.5em -1em rgb(233 169 32 / 0.75);
+  }
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-white,
+.bg-slate-50 {
+  background-color: var(--surface-color);
+}
+
+.bg-slate-100 {
+  background-color: var(--surface-muted);
+}
+
+.text-slate-950,
+.text-slate-800,
+.text-slate-700,
+.text-slate-600,
+.text-slate-500 {
+  color: var(--text-strong);
+}
+
+.text-slate-400 {
+  color: var(--text-muted);
+}
+
+.border-slate-200,
+.border-slate-100,
+.ring-slate-200,
+.ring-slate-100 {
+  border-color: var(--border-soft);
+  --tw-ring-color: var(--border-soft);
+}
+
+.shadow-slate-300\/40,
+.shadow-slate-300\/50,
+.shadow-slate-200\/70 {
+  --tw-shadow-color: var(--shadow-soft);
+}
+
+:root[data-theme="dark"] .bg-white\/70,
+:root[data-theme="dark"] .bg-white\/80,
+:root[data-theme="dark"] .bg-slate-50\/95 {
+  background-color: rgb(17 24 39 / 0.88);
+}
+
+:root[data-theme="dark"] .bg-white\/5,
+:root[data-theme="dark"] .bg-white\/10,
+:root[data-theme="dark"] .bg-white\/15 {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+:root[data-theme="dark"] .hover\:bg-white:hover,
+:root[data-theme="dark"] .hover\:bg-slate-50:hover {
+  background-color: rgb(31 41 55 / 0.95);
+}
+
+:root[data-theme="navy"] .bg-slate-100 {
+  background:
+    radial-gradient(circle at top right, rgb(237 127 44 / 0.16), transparent 20rem),
+    linear-gradient(145deg, rgb(231 240 251 / 0.92), rgb(248 250 252 / 0.78));
+}
