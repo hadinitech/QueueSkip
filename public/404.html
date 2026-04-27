@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QueueSkip</title>
+    <script>
+      (function () {
+        const pathname = window.location.pathname
+        const repoBase = '/QueueSkip'
+        const relativePath = pathname.startsWith(repoBase)
+          ? pathname.slice(repoBase.length)
+          : pathname
+        const query = window.location.search.replace(/^\?/, '')
+        const redirect =
+          repoBase +
+          '/?p=' +
+          encodeURIComponent(relativePath || '/')
+
+        window.location.replace(
+          redirect + (query ? '&q=' + encodeURIComponent(query) : '') + window.location.hash,
+        )
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
