@@ -1,3 +1,5 @@
+import { withBasePath } from '../../utils/appPath'
+
 const customerSteps: Step[] = [
   {
     description: 'Enter your name and phone number to join a queue from your phone.',
@@ -262,13 +264,13 @@ export function HowItWorksPage() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-[#ed7f2c]/20 transition hover:-translate-y-0.5 hover:opacity-95"
-                href={`${import.meta.env.BASE_URL}signup`}
+                href={withBasePath('/signup')}
               >
                 Get Started
               </a>
               <a
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/18 bg-white/6 px-5 py-2.5 text-sm font-black text-white transition hover:bg-white/10"
-                href={`${import.meta.env.BASE_URL}customer`}
+                href={withBasePath('/customer')}
               >
                 Add to Home Screen
               </a>

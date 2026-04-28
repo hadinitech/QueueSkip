@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { withBasePath } from '../../utils/appPath'
 
 type InstallPromptEvent = Event & {
   prompt: () => Promise<void>
@@ -63,19 +64,19 @@ export function Footer() {
             <div className="mt-4 flex flex-col gap-3">
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}customer`}
+                href={withBasePath('/customer')}
               >
                 Home
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}for-businesses`}
+                href={withBasePath('/for-businesses')}
               >
                 For Businesses
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}how-it-works`}
+                href={withBasePath('/how-it-works')}
               >
                 How It Works
               </a>
@@ -95,7 +96,7 @@ export function Footer() {
               </a>
               <a
                 className="font-semibold text-slate-500 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}contact-us`}
+                href={withBasePath('/contact-us')}
               >
                 Need help? Contact us
               </a>
@@ -109,13 +110,13 @@ export function Footer() {
             <div className="mt-4 flex flex-col gap-3">
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}privacy-policy`}
+                href={withBasePath('/privacy-policy')}
               >
                 Privacy Policy
               </a>
               <a
                 className="font-semibold text-slate-600 transition hover:text-[var(--color-primary)]"
-                href={`${import.meta.env.BASE_URL}terms-of-service`}
+                href={withBasePath('/terms-of-service')}
               >
                 Terms of Service
               </a>

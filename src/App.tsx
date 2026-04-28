@@ -7,6 +7,7 @@ import { useAppRoute } from './hooks/useAppRoute'
 import { useAuthSession } from './hooks/useAuthSession'
 import { CustomerPage } from './pages/customer/CustomerPage'
 import { logout } from './services/supabase/authService'
+import { withBasePath } from './utils/appPath'
 
 const AdminDashboard = lazy(() =>
   import('./pages/admin/AdminDashboard').then((module) => ({
@@ -75,7 +76,7 @@ function App() {
   const handleLogout = () => {
     setIsWorkspaceMenuOpen(false)
     void logout().finally(() => {
-      window.location.replace('/customer')
+      window.location.replace(withBasePath('/customer'))
     })
   }
 

@@ -1,4 +1,5 @@
 import { supabase } from './client'
+import { withBasePath } from '../../utils/appPath'
 
 type LoginInput = {
   email: string
@@ -66,7 +67,7 @@ export async function signUpWithEmail({
 export async function sendPasswordResetEmail({ email }: ResetPasswordInput) {
   const client = requireSupabase()
   const { data, error } = await client.auth.resetPasswordForEmail(email.trim(), {
-    redirectTo: `${window.location.origin}/login`,
+    redirectTo: `${window.location.origin}${withBasePath('/login')}`,
   })
 
   if (error) {
